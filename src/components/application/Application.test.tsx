@@ -15,10 +15,20 @@ describe('Application component', () => {
         })
         expect(pageH1).toBeInTheDocument()
 
+        const page1h1 = screen.getByRole('heading', {
+            level:1
+        })
+        expect(page1h1).toBeInTheDocument();
+
         const pageH2 = screen.getByRole('heading', {
             name:"Section 1"
         })
         expect(pageH2).toBeInTheDocument()
+
+        const page1h2 = screen.getByRole('heading', {
+            level:2
+        })
+        expect(page1h2).toBeInTheDocument();
 
         const bioEle = screen.getByRole('textbox', {
             name:'Bio'
