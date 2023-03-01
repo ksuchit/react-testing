@@ -54,4 +54,20 @@ describe('counter component', () => {
         expect(countEle).toHaveTextContent('-1')
     })
 
+    test('render input tag', async() => {
+        render(<Counter />)
+
+        const inputEle = screen.getByRole('spinbutton')
+        await userEvent.type(inputEle, '14')
+        expect(inputEle).toHaveValue(14)
+        
+        const setBtn = screen.getByRole('button', {
+            name:/set/i
+        })
+        await userEvent.click(setBtn)
+
+        const countEle = screen.getByRole('heading')
+        expect(countEle).toHaveTextContent('14')
+    })
+
 })
