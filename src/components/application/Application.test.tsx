@@ -1,14 +1,20 @@
 import { render, screen } from "@testing-library/react"
 import Application from "./Application"
 
-
 describe('Application component', () => {
+
     test("render correctly", () => {
         render(<Application />)
         const nameEle = screen.getByRole('textbox', {
             name:"Name"
         })
         expect(nameEle).toBeInTheDocument();
+
+        const nameEle1=screen.getByLabelText(/name/i)
+        expect(nameEle1).toBeInTheDocument()
+
+        const nameEle2 = screen.getByPlaceholderText('Enter name')
+        expect(nameEle2).toBeInTheDocument();
 
         const pageH1 = screen.getByRole('heading', {
             name:"Job Application Form"
@@ -34,6 +40,12 @@ describe('Application component', () => {
             name:'Bio'
         })
         expect(bioEle).toBeInTheDocument();
+
+        const bioEle2 = screen.getByLabelText(/BIo/i)
+        expect(bioEle2).toBeInTheDocument();
+
+        const bioEle3 = screen.getByPlaceholderText('About...')
+        expect(bioEle3).toBeInTheDocument();
 
         const jobLocationEle = screen.getByRole('combobox')
         expect(jobLocationEle).toBeInTheDocument();

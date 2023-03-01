@@ -1,7 +1,5 @@
 
-
 export default function Application() {
-    
     return (
         <>
             <h1>Job Application Form</h1>
