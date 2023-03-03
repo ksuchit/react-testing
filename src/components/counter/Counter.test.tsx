@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import Counter from "./Counter"
-
+import Application from '../application/Application'
 
 describe('counter component', () => {
     test('page render', () => {
@@ -70,4 +70,56 @@ describe('counter component', () => {
         expect(countEle).toHaveTextContent('14')
     })
 
+    test('elements are focused in order when tab btn click', async() => {
+        
+        render(<Application />)
+        render(<Counter />)
+        const nameEle = screen.getByRole('textbox', {
+            name:"Name"
+        })
+        const bioEle = screen.getByPlaceholderText(/about.../i)
+        const locationEle = screen.getByRole('combobox')
+        const checkboxEle = screen.getByRole('checkbox')
+        const submitBtn = screen.getByRole('button', {
+            name:/submit/i
+        })
+        const incBtn = screen.getByRole('button', {
+            name:/increament/i
+        })
+        const decBtn = screen.getByRole('button', {
+            name:/decrement/i
+        })
+        const userInput = screen.getByRole('spinbutton')
+        const setBtn = screen.getByRole('button', {
+            name:/set/i
+        })
+
+        await userEvent.tab()
+        expect(nameEle).toHaveFocus();
+
+        await userEvent.tab();
+        expect(bioEle).toHaveFocus();
+
+        await userEvent.tab();
+        expect(locationEle).toHaveFocus();
+
+        await userEvent.tab();
+        expect(checkboxEle).toHaveFocus();
+
+        await userEvent.tab();
+        expect(submitBtn).toHaveFocus();
+
+        await userEvent.tab();
+        expect(incBtn).toHaveFocus();
+
+        await userEvent.tab();
+        expect(decBtn).toHaveFocus();
+
+        await userEvent.tab();
+        expect(userInput).toHaveFocus();
+
+        await userEvent.tab()
+        expect(setBtn).toHaveFocus()
+
+    })
 })
