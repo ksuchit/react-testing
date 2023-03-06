@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react"
 import { act } from "react-dom/test-utils"
 import { useCounter } from "./useCounter"
 
-
+//custom hook testing
 describe('useCounter', () => {
     test('should render the initial count',()=> {
 
